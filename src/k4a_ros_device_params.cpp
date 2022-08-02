@@ -137,18 +137,21 @@ k4a_result_t K4AROSDeviceParams::GetDeviceConfig(k4a_device_configuration_t* con
     }
   }
 
-  ROS_INFO_STREAM("Setting Camera FPS: " << fps);
+  ROS_INFO_STREAM("Setting Output FPS: " << fps);
 
-  if (fps == 5)
+  if ((fps > 0) && (fps <= 5))
   {
+    ROS_INFO_STREAM("Setting Camera FPS: 5");
     configuration->camera_fps = K4A_FRAMES_PER_SECOND_5;
   }
-  else if (fps == 15)
+  else if (fps <= 15)
   {
+    ROS_INFO_STREAM("Setting Camera FPS: 15");
     configuration->camera_fps = K4A_FRAMES_PER_SECOND_15;
   }
-  else if (fps == 30)
+  else if (fps <= 30)
   {
+    ROS_INFO_STREAM("Setting Camera FPS: 30");
     configuration->camera_fps = K4A_FRAMES_PER_SECOND_30;
   }
   else
